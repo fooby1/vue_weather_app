@@ -1,4 +1,5 @@
-# 20190127_vue_weather_app
+# Weather App
+### A simple weather app built on Vue and the DarkSky API.
 
 ## Project setup
 ```
