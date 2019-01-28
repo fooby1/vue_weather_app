@@ -1,8 +1,8 @@
 <template>
   <body>
     <div id="app">
-      <TopBar msg="Newcastle Upon Tyne"/>
-      <CurrentWeather msg="6 Degrees"/>
+      <TopBar msg="Todays Forecast" time="13:41"/>
+      <CurrentWeather temp="6" condition="Clear for the hour." forecast="Foggy tomorrow afternoon."/>
     </div>
   </body>
 </template>

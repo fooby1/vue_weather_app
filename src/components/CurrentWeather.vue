@@ -1,6 +1,8 @@
 <template>
   <div id="currentWeather">
-    <h1 id="degrees">{{ msg }}</h1>
+    <h1 id="temp">{{ temp }}° </h1>
+    <p id="condition">{{ condition }}</p><br />
+    <p id="shortForecast">{{ forecast }}</p><br />
   </div>
 </template>
 
@@ -8,7 +10,9 @@
 export default {
   name: 'CurrentWeather',
   props: {
-    msg: String
+    temp: Number,
+    condition: String,
+    forecast: String
   }
 }
 </script>
@@ -30,6 +34,15 @@ a {
   color: #42b983;
 }
 #currentWeather {
-  background-color: red;
+  background: #4e5d6b;
+}
+#temp {
+  font-weight: 700;
+  font-size: 35px;
+  color: #e1662c;
+}
+#condition {
+  font-weight: 700;
+  font-size: 15px;
 }
 </style>

@@ -1,6 +1,7 @@
 <template>
   <div id="thePlace">
     <h1 id="theCity">{{ msg }}</h1>
+    <p id="theTime">{{ time }}</p>
   </div>
 </template>
 
@@ -8,7 +9,8 @@
 export default {
   name: 'TopBar',
   props: {
-    msg: String
+    msg: String,
+    time: String
   }
 }
 </script>
@@ -31,5 +33,11 @@ a {
 }
 #thePlace {
   background-color: #485562;
+}
+#theTime {
+  color: #ebab5b;
+  padding-left: 5px;
+  font-weight: 400;
+  font-size: 16.9px;
 }
 </style>
