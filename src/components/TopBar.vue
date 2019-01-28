@@ -1,7 +1,7 @@
 <template>
 <div id="thePlace">
   <h1 id="theCity">Newcastle Upon Tyne</h1>
-  <p id="theTime">14:40</p>
+  <p id="theTime" v-on:click="doStuff()">14:40</p>
 </div>
 </template>
 
