@@ -7,15 +7,22 @@
   </div>
 
   <div id="theSummary">
-    <h3>{{ forecast.currently.summary }}</h3>
+
+    <canvas id="icon-canvas" width="75" height="75">
+      {{ forecast.currently.icon }}
+    </canvas>
+
+    <button id="temp">{{ forecast.currently.temperature }}°</button>
+
+    <p id="summary">{{ forecast.currently.summary }}</p><br />
+
+    <p id="short-forecast">{{ forecast.daily.data[6] }}</p>
   </div>
 
 </div>
-
 </template>
 
 <script>
-
 import API from '@/lib/API';
 
 export default {
@@ -27,7 +34,6 @@ export default {
   },
   mounted() {
     API.getForecast().then(result => {
-      console.log(result);
       this.forecast = result;
     });
   },
@@ -75,5 +81,17 @@ a {
   margin: 0 auto;
   color: #ebebeb;
   font-weight: 400;
+}
+
+#summary {
+  font-weight: 700;
+  font-size: 15px;
+}
+
+#temp {
+  font-weight: 700;
+  font-size: 35px;
+  color: #e1662c;
+  padding-right: 5px;
 }
 </style>
