@@ -1,9 +1,17 @@
 <template>
+<div id="container">
+
   <div id="thePlace">
-    <h1 id="theCity">Newcastle Upon Tyne</h1>
-    <p id="theTime">14:40</p>
-    <pre>{{ forecast }}</pre>
+    <h1 id="theCity">Local Forecast</h1>
+    <p id="theTime">{{ forecast.currently.time }}</p>
   </div>
+
+  <div id="theSummary">
+    <h3>{{ forecast.currently.summary }}</h3>
+  </div>
+
+</div>
+
 </template>
 
 <script>
@@ -22,7 +30,7 @@ export default {
       console.log(result);
       this.forecast = result;
     });
-  }
+  },
 }
 </script>
 
@@ -56,5 +64,16 @@ a {
   padding-left: 5px;
   font-weight: 400;
   font-size: 16.9px;
+}
+
+#theSummary {
+  padding: 5px 10px 5px 10px;
+}
+
+#container {
+  background: #4e5d6b;
+  margin: 0 auto;
+  color: #ebebeb;
+  font-weight: 400;
 }
 </style>
