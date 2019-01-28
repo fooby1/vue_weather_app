@@ -1,21 +1,18 @@
 <template>
 <body>
   <div id="app">
-    <TopBar msg="Todays Forecast" time="13:41" />
-    <CurrentWeather temp="6" condition="Clear for the hour." forecast="Foggy tomorrow afternoon." />
+    <Home/>
   </div>
 </body>
 </template>
 
 <script>
-import TopBar from './components/TopBar.vue'
-import CurrentWeather from './components/CurrentWeather.vue'
+import Home from './components/Home.vue'
 
 export default {
   name: 'app',
   components: {
-    TopBar,
-    CurrentWeather
+    Home,
   }
 }
 </script>
