@@ -1,17 +1,13 @@
 <template>
-  <div id="thePlace">
-    <h1 id="theCity">{{ msg }}</h1>
-    <p id="theTime">{{ time }}</p>
-  </div>
+<div id="thePlace">
+  <h1 id="theCity">Newcastle Upon Tyne</h1>
+  <p id="theTime">14:40</p>
+</div>
 </template>
 
 <script>
 export default {
   name: 'TopBar',
-  props: {
-    msg: String,
-    time: String
-  }
 }
 </script>
 
@@ -20,20 +16,25 @@ export default {
 h3 {
   margin: 40px 0 0;
 }
+
 ul {
   list-style-type: none;
   padding: 0;
 }
+
 li {
   display: inline-block;
   margin: 0 10px;
 }
+
 a {
   color: #42b983;
 }
+
 #thePlace {
   background-color: #485562;
 }
+
 #theTime {
   color: #ebab5b;
   padding-left: 5px;
