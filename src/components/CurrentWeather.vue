@@ -1,12 +1,12 @@
 <template>
-  <div id="thePlace">
-    <h1 id="theCity">{{ msg }}</h1>
+  <div id="currentWeather">
+    <h1 id="degrees">{{ msg }}</h1>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'TopBar',
+  name: 'CurrentWeather',
   props: {
     msg: String
   }
@@ -29,7 +29,7 @@ li {
 a {
   color: #42b983;
 }
-#thePlace {
-  background-color: #485562;
+#currentWeather {
+  background-color: red;
 }
 </style>
