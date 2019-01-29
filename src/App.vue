@@ -21,13 +21,16 @@ export default {
 #app {
   background: #2b3e4f;
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  margin: 10% 25% 10% 25%;
   color: #ebebeb;
+  padding: 0px;
+  margin: 0px;
 }
 
 body {
   background: #2b3e4f;
   color: #ebebeb;
+  padding: 0px;
+  margin: 0px;
 }
 
 h1 {
