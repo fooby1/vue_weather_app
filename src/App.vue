@@ -27,7 +27,6 @@ export default {
 
 body {
   background: #2b3e4f;
-  font-family: 'Lato';
   color: #ebebeb;
 }
 

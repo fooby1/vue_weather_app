@@ -2,8 +2,8 @@
 <div id="container">
 
   <div id="thePlace">
-    <h1 id="theCity">Local Forecast</h1>
-    <p id="theTime">{{ forecast.currently.time }}</p>
+    <h1 id="theCity">Local Weather</h1>
+    <p id="theTime">{{ forecast.currently.time | moment("HH:mm") }}</p>
   </div>
 
   <div id="theSummary">
@@ -14,7 +14,7 @@
 
     <div id="summaryText">
 
-      <button id="temp">{{ forecast.currently.temperature }}°</button>
+      <button id="temp">{{ Math.round(forecast.currently.temperature) }}°</button>
 
       <p id="summary">{{ forecast.minutely.summary }}</p><br />
 
@@ -114,6 +114,7 @@ a {
   font-size: 35px;
   color: #e1662c;
   padding-right: 5px;
+  padding-bottom: 7px;
 }
 
 #icon-canvas {
@@ -123,7 +124,5 @@ a {
   float: left;
 }
 
-#short-forecast {
-
-}
+#short-forecast {}
 </style>
