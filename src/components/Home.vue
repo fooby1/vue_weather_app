@@ -16,7 +16,7 @@
 
     <p id="summary">{{ forecast.currently.summary }}</p><br />
 
-    <p id="short-forecast">{{ forecast.daily.data[6] }}</p>
+    <p id="short-forecast">{{ forecast.hourly.summary }}</p>
   </div>
 
 </div>
