@@ -8,15 +8,20 @@
 
   <div id="theSummary">
 
-    <canvas id="icon-canvas" width="75" height="75">
-      {{ forecast.currently.icon }}
-    </canvas>
+    <div id="icon-canvas">
+      {{ icons[forecast.currently.icon] }}
+    </div>
 
-    <button id="temp">{{ forecast.currently.temperature }}°</button>
+    <div id="summaryText">
 
-    <p id="summary">{{ forecast.currently.summary }}</p><br />
+      <button id="temp">{{ forecast.currently.temperature }}°</button>
 
-    <p id="short-forecast">{{ forecast.hourly.summary }}</p>
+      <p id="summary">{{ forecast.minutely.summary }}</p><br />
+
+      <p id="short-forecast">{{ forecast.daily.summary }}</p>
+
+    </div>
+
   </div>
 
 </div>
@@ -29,7 +34,19 @@ export default {
   name: 'Home',
   data() {
     return {
-      forecast: {}
+      forecast: {},
+      icons: {
+        'clear-day': '☀️',
+        'clear-night': '🌒',
+        rain: '🌧',
+        snow: '🌨',
+        sleet: '🍦',
+        wind: '💨',
+        fog: '🌫',
+        cloudy: '⛅️',
+        'partly-cloudy-day': 'PCD',
+        'partly-cloudy-night': 'PCN'
+      }
     };
   },
   mounted() {
@@ -73,7 +90,7 @@ a {
 }
 
 #theSummary {
-  padding: 5px 10px 5px 10px;
+  padding: 10px 0px 10px 0px;
 }
 
 #container {
@@ -88,10 +105,25 @@ a {
   font-size: 15px;
 }
 
+#summaryText {
+  padding: 0px 15px 10px 0px;
+}
+
 #temp {
   font-weight: 700;
   font-size: 35px;
   color: #e1662c;
   padding-right: 5px;
+}
+
+#icon-canvas {
+  font-size: 50px;
+  padding: 5px 20px 5px 20px;
+  width: 50px;
+  float: left;
+}
+
+#short-forecast {
+
 }
 </style>
