@@ -1,8 +1,6 @@
 <template>
 <div id="wrapper">
 
-
-
     <div id="topBar">
       <input v-model="location" id="searchBar" type="text" placeholder="Enter Location">
       <button @click="updateLocation" id="searchBtn" type="button">Search</button>
@@ -130,10 +128,6 @@ a {
   font-size: 16.9px;
 }
 
-#theSummary {
-  padding: 10px 0px 10px 0px;
-}
-
 #container {
   background: #4e5d6b;
   margin: 10% 25% 10% 25%;
@@ -141,50 +135,55 @@ a {
   font-weight: 400;
 }
 
-#summary {
-  font-weight: 700;
-  font-size: 15px;
+#theSummary {
+  padding: 10px 0px 10px 0px;
 }
 
-#summaryText {
-  padding: 0px 15px 10px 0px;
-}
+  #summary {
+    font-weight: 700;
+    font-size: 15px;
+  }
+
+  #summaryText {
+    padding: 0px 15px 10px 0px;
+  }
 
 #topBar {
   background-color: rgb(225, 225, 225);
   padding: 10px 5px 10px 5px;
-}
-
-#searchBar {
-  background-color: rgb(245, 245, 245);
-  width: 40%;
-  padding: 5px 5px 5px 5px;
-  margin: 0 auto;
-  border-radius: 25px;
-  color: rgb(27, 27, 27);
   text-align: center;
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  font-size: 17px;
 }
 
-#searchBar:focus {
-  outline: none;
-  background-color: rgb(255, 255, 255);
+  #searchBar {
+    background-color: rgb(245, 245, 245);
+    width: 40%;
+    padding: 5px 5px 5px 5px;
+    margin: 0 auto;
+    border-radius: 25px;
+    color: rgb(27, 27, 27);
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    text-align: center;
+    font-size: 17px;
+  }
 
-}
+    #searchBar:focus {
+      outline: none;
+      background-color: rgb(255, 255, 255);
 
-#searchBtn {
-  background-color: rgb(235, 235, 235);
-  width: 70px;
-  display: inline-block;
-  margin-left: -70px;
-  padding: 5px 5px 5px 5px;
-  border-radius: 25px;
-  color: rgb(27, 27, 27);
-  text-align: center;
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  font-size: 17px;
-}
+    }
+
+    #searchBtn {
+      background-color: rgb(235, 235, 235);
+      width: 70px;
+      display: inline-block;
+      margin-left: -70px;
+      padding: 5px 5px 5px 5px;
+      border-radius: 25px;
+      color: rgb(27, 27, 27);
+      text-align: center;
+      font-family: 'Avenir', Helvetica, Arial, sans-serif;
+      font-size: 17px;
+    }
 
 input:focus::-webkit-input-placeholder {
   opacity: 0;
