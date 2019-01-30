@@ -1,10 +1,10 @@
 <template>
 <div id="wrapper">
 
-    <div id="topBar">
-      <input v-model="location" id="searchBar" type="text" placeholder="Enter Location">
-      <button @click="updateLocation" id="searchBtn" type="button">Search</button>
-    </div>
+  <div id="topBar">
+    <input v-model="location" id="searchBar" type="text" placeholder="Enter Location">
+    <button @click="updateLocation" id="searchBtn" type="button">Search</button>
+  </div>
 
   <div id="container" v-if="forecast">
 
@@ -21,10 +21,8 @@
 
       <div id="summaryText">
 
-        <button id="temp" {{ Math.round(forecast.currently.temperature) }}°</button>
-
+        <button id="temp"> {{ Math.round(forecast.currently.temperature) }}°</button>
         <p id="summary">{{ forecast.minutely.summary }}</p><br />
-
         <p id="short-forecast">{{ forecast.daily.summary }}</p>
 
       </div>
@@ -40,10 +38,10 @@
 import API from '@/lib/API';
 
 export default {
-  name: 'Home',
+  name: 'home',
   data() {
     return {
-      location : '',
+      location: '',
       forecast: null,
       icons: {
         'clear-day': '☀️',
@@ -54,15 +52,13 @@ export default {
         wind: '💨',
         fog: '🌫',
         cloudy: '⛅️',
-        'partly-cloudy-day': '⛅️' ,
+        'partly-cloudy-day': '⛅️',
         'partly-cloudy-night': '⛅️'
       }
     };
   },
   mounted() {
-    API.getForecast().then(result => {
-      this.forecast = result;
-    });
+    this.loadWeather('55.026430299999994', '-1.5174124999999998');
   },
   props: {
     // Icon size
@@ -83,11 +79,16 @@ export default {
     }
   },
   methods: {
+    loadWeather(lat, lng) {
+      API.getForecast(lat, lng).then(result => {
+        this.forecast = result;
+      });
+    },
     updateLocation() {
       API.getCoordinates(this.location).then(result => {
-        console.log(result);
-      })
-    }
+        this.loadWeather(result.latitude, result.longitude);
+      });
+    },
   }
 }
 </script>
@@ -139,14 +140,14 @@ a {
   padding: 10px 0px 10px 0px;
 }
 
-  #summary {
-    font-weight: 700;
-    font-size: 15px;
-  }
+#summary {
+  font-weight: 700;
+  font-size: 15px;
+}
 
-  #summaryText {
-    padding: 0px 15px 10px 0px;
-  }
+#summaryText {
+  padding: 0px 15px 10px 0px;
+}
 
 #topBar {
   background-color: rgb(225, 225, 225);
@@ -154,36 +155,36 @@ a {
   text-align: center;
 }
 
-  #searchBar {
-    background-color: rgb(245, 245, 245);
-    width: 40%;
-    padding: 5px 5px 5px 5px;
-    margin: 0 auto;
-    border-radius: 25px;
-    color: rgb(27, 27, 27);
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    text-align: center;
-    font-size: 17px;
-  }
+#searchBar {
+  background-color: rgb(245, 245, 245);
+  width: 40%;
+  padding: 5px 5px 5px 5px;
+  margin: 0 auto;
+  border-radius: 25px;
+  color: rgb(27, 27, 27);
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  text-align: center;
+  font-size: 17px;
+}
 
-    #searchBar:focus {
-      outline: none;
-      background-color: rgb(255, 255, 255);
+#searchBar:focus {
+  outline: none;
+  background-color: rgb(255, 255, 255);
 
-    }
+}
 
-    #searchBtn {
-      background-color: rgb(235, 235, 235);
-      width: 70px;
-      display: inline-block;
-      margin-left: -70px;
-      padding: 5px 5px 5px 5px;
-      border-radius: 25px;
-      color: rgb(27, 27, 27);
-      text-align: center;
-      font-family: 'Avenir', Helvetica, Arial, sans-serif;
-      font-size: 17px;
-    }
+#searchBtn {
+  background-color: rgb(235, 235, 235);
+  width: 70px;
+  display: inline-block;
+  margin-left: -70px;
+  padding: 5px 5px 5px 5px;
+  border-radius: 25px;
+  color: rgb(27, 27, 27);
+  text-align: center;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-size: 17px;
+}
 
 input:focus::-webkit-input-placeholder {
   opacity: 0;
