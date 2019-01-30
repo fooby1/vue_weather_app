@@ -1,32 +1,33 @@
 <template>
-  <div id="wrapper">
+<div id="wrapper">
+
+
 
     <div id="topBar">
-      <input id="searchBar" type="text" placeholder="Newcastle Upon Tyne, GB">
+      <input v-model="location" id="searchBar" type="text" placeholder="Enter Location">
+      <button @click="updateLocation" id="searchBtn" type="button">Search</button>
     </div>
 
-    <div id="container">
+  <div id="container" v-if="forecast">
 
-      <div id="thePlace">
-        <h1 id="theCity">Local Weather</h1>
-        <p id="theTime">{{ forecast.currently.time | moment("HH:mm") }}</p>
+    <div id="thePlace">
+      <h1 id="theCity">Local Weather</h1>
+      <p id="theTime">{{ forecast.currently.time | moment("HH:mm") }}</p>
+    </div>
+
+    <div id="theSummary">
+
+      <div id="icon-canvas">
+        {{ icons[forecast.currently.icon] }}
       </div>
 
-      <div id="theSummary">
+      <div id="summaryText">
 
-        <div id="icon-canvas">
-          {{ icons[forecast.currently.icon] }}
-        </div>
+        <button id="temp" {{ Math.round(forecast.currently.temperature) }}°</button>
 
-        <div id="summaryText">
+        <p id="summary">{{ forecast.minutely.summary }}</p><br />
 
-          <button id="temp">{{ Math.round(forecast.currently.temperature) }}°</button>
-
-          <p id="summary">{{ forecast.minutely.summary }}</p><br />
-
-          <p id="short-forecast">{{ forecast.daily.summary }}</p>
-
-        </div>
+        <p id="short-forecast">{{ forecast.daily.summary }}</p>
 
       </div>
 
@@ -34,6 +35,7 @@
 
   </div>
 
+</div>
 </template>
 
 <script>
@@ -43,7 +45,8 @@ export default {
   name: 'Home',
   data() {
     return {
-      forecast: {},
+      location : '',
+      forecast: null,
       icons: {
         'clear-day': '☀️',
         'clear-night': '🌒',
@@ -53,8 +56,8 @@ export default {
         wind: '💨',
         fog: '🌫',
         cloudy: '⛅️',
-        'partly-cloudy-day': 'PCD',
-        'partly-cloudy-night': 'PCN'
+        'partly-cloudy-day': '⛅️' ,
+        'partly-cloudy-night': '⛅️'
       }
     };
   },
@@ -63,6 +66,31 @@ export default {
       this.forecast = result;
     });
   },
+  props: {
+    // Icon size
+    width: {
+      type: Number,
+      default: 64
+    },
+
+    height: {
+      type: Number,
+      default: 64
+    },
+
+    // Weather condition
+    condition: {
+      type: String,
+      default: null
+    }
+  },
+  methods: {
+    updateLocation() {
+      API.getCoordinates(this.location).then(result => {
+        console.log(result);
+      })
+    }
+  }
 }
 </script>
 
@@ -113,11 +141,6 @@ a {
   font-weight: 400;
 }
 
-#topBar {
-  background-color: rgb(225, 225, 225);
-  padding: 10px 5px 10px 5px;
-}
-
 #summary {
   font-weight: 700;
   font-size: 15px;
@@ -127,13 +150,16 @@ a {
   padding: 0px 15px 10px 0px;
 }
 
+#topBar {
+  background-color: rgb(225, 225, 225);
+  padding: 10px 5px 10px 5px;
+}
+
 #searchBar {
   background-color: rgb(245, 245, 245);
-  width: 60%;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+  width: 40%;
   padding: 5px 5px 5px 5px;
+  margin: 0 auto;
   border-radius: 25px;
   color: rgb(27, 27, 27);
   text-align: center;
@@ -147,8 +173,21 @@ a {
 
 }
 
+#searchBtn {
+  background-color: rgb(235, 235, 235);
+  width: 70px;
+  display: inline-block;
+  margin-left: -70px;
+  padding: 5px 5px 5px 5px;
+  border-radius: 25px;
+  color: rgb(27, 27, 27);
+  text-align: center;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-size: 17px;
+}
+
 input:focus::-webkit-input-placeholder {
-    opacity: 0;
+  opacity: 0;
 }
 
 #temp {
