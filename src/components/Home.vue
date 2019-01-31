@@ -9,7 +9,7 @@
   <div id="container" v-if="forecast">
 
     <div id="thePlace">
-      <h1 id="theCity">Local Weather</h1>
+      <h1 id="theCity">{{ address.name }}</h1>
       <p id="theTime">{{ forecast.currently.time | moment("HH:mm") }}</p>
     </div>
 
@@ -42,6 +42,7 @@ export default {
   data() {
     return {
       location: '',
+      address: '',
       forecast: null,
       icons: {
         'clear-day': '☀️',
@@ -58,7 +59,7 @@ export default {
     };
   },
   mounted() {
-    this.loadWeather('55.026430299999994', '-1.5174124999999998');
+    this.loadWeather('38.7252', '-105.6077');
   },
   props: {
     // Icon size
@@ -80,6 +81,9 @@ export default {
   },
   methods: {
     loadWeather(lat, lng) {
+      API.getAddress(lat, lng).then(result => {
+        this.address = result;
+      });
       API.getForecast(lat, lng).then(result => {
         this.forecast = result;
       });
