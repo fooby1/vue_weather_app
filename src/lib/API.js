@@ -19,8 +19,6 @@ function getAddress(lat, lng) {
     .then(response => response.json());
 }
 
-//darksky.net/rgeo?hires=1 &lat= 38.7252 &lon= -105.6077
-
 export default {
   getForecast,
   getCoordinates,
