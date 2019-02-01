@@ -1,5 +1,5 @@
 <template>
-<div id="wrapper">
+<div id="weatherWrapper">
 
   <div id="topBar">
     <input v-model="location" id="searchBar" type="text" placeholder="Enter Location">
@@ -31,6 +31,22 @@
 
   </div>
 
+  <div id="map" ref="map">
+    <iframe
+      id="map-embed-iframe"
+      frameborder="0"
+      height="300px"
+      width="100%"
+      :src='embedURL'>
+    </iframe>
+  </div>
+
+  <div id="footer">
+
+    <p>Powered by DarkSky.</p>
+
+  </div>
+
 </div>
 </template>
 
@@ -41,6 +57,7 @@ export default {
   name: 'home',
   data() {
     return {
+      embedURL: '',
       location: '',
       address: '',
       forecast: null,
@@ -81,6 +98,9 @@ export default {
   },
   methods: {
     loadWeather(lat, lng) {
+
+      this.embedURL = API.getEmbedURL(lat, lng)
+
       API.getAddress(lat, lng).then(result => {
         this.address = result;
       });
@@ -117,7 +137,7 @@ a {
   color: #42b983;
 }
 
-#wrapper {
+#weatherWrapper {
   width: 100%;
 }
 
@@ -135,7 +155,7 @@ a {
 
 #container {
   background: #4e5d6b;
-  margin: 10% 25% 10% 25%;
+  margin: 10% 15% 10% 15%;
   color: #ebebeb;
   font-weight: 400;
 }
@@ -210,4 +230,18 @@ input:focus::-webkit-input-placeholder {
 }
 
 #short-forecast {}
+
+#map {
+  margin: 0px;
+}
+
+#footer {
+  background-color: rgb(51, 51, 51);
+  text-align: center;
+  margin: 0px;
+  padding: 20px 5px 20px 5px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
 </style>
