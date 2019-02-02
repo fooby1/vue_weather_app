@@ -19,7 +19,7 @@ export default {
 
 <style>
 #app {
-  background: #2b3e4f;
+  background: rgb(252, 252, 252);
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   color: #ebebeb;
   padding: 0px;
@@ -34,8 +34,8 @@ body {
 }
 
 h1 {
-  font-weight: 700;
-  font-size: 26px;
+  font-weight: 680;
+  font-size: 18px;
 }
 
 h2 {
@@ -56,14 +56,6 @@ h3 {
 p {
   font-size: 15px;
   font-weight: 300;
-}
-
-a {
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: none;
 }
 
 input,

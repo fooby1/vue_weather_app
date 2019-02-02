@@ -20,7 +20,7 @@ function getAddress(lat, lng) {
 }
 
 function getEmbedURL(lat, lng) {
-  return `https://maps.darksky.net/@temperature,${lat},${lng},11?domain="+encodeURIComponent(window.location.href)+"&auth=1525213550_b5fc128e7789bb56048952cc704c8473&embed=true&amp;timeControl=false&amp;fieldControl=false&amp;`;
+  return `https://maps.darksky.net/@temperature,${lat},${lng},11?domain="+encodeURIComponent(window.location.href)+"&auth=1525213550_b5fc128e7789bb56048952cc704c8473&embed=true&amp;timeControl=false&amp;fieldControl=false&amp;defaultField=temperature`;
 }
 
 export default {

@@ -1,9 +1,21 @@
 <template>
 <div id="weatherWrapper">
 
+  <div id="header">
+
+    <h1>Weather App</h1>
+
+  </div>
+
   <div id="topBar">
     <input v-model="location" id="searchBar" type="text" placeholder="Enter Location">
     <button @click="updateLocation" id="searchBtn" type="button">Search</button>
+  </div>
+
+  <div id="alerts">
+
+    <a href="http://meteoalarm.eu/en_UK/0/0/UK013.html">{{ forecast.alerts[0].title }}</a>
+
   </div>
 
   <div id="container" v-if="forecast">
@@ -15,14 +27,14 @@
 
     <div id="theSummary">
 
-      <div id="icon-canvas">
+    <!--  <div id="icon-canvas">
         {{ icons[forecast.currently.icon] }}
-      </div>
+      </div> -->
 
       <div id="summaryText">
 
         <button id="temp"> {{ Math.round(forecast.currently.temperature) }}°</button>
-        <p id="summary">{{ forecast.minutely.summary }}</p><br />
+        <p id="summary">{{ forecast.hourly.summary }}</p><br />
         <p id="short-forecast">{{ forecast.daily.summary }}</p>
 
       </div>
@@ -35,7 +47,7 @@
     <iframe
       id="map-embed-iframe"
       frameborder="0"
-      height="300px"
+      height="450px"
       width="100%"
       :src='embedURL'>
     </iframe>
@@ -43,7 +55,7 @@
 
   <div id="footer">
 
-    <p>Powered by DarkSky.</p>
+    <p>Powered by DarkSky</p>
 
   </div>
 
@@ -76,7 +88,7 @@ export default {
     };
   },
   mounted() {
-    this.loadWeather('38.7252', '-105.6077');
+    this.loadWeather('51.5073', '-0.1276');
   },
   props: {
     // Icon size
@@ -134,30 +146,50 @@ li {
 }
 
 a {
-  color: #42b983;
+  color: rgb(231, 63, 63);
+  font-size: 20px;
+  font-weight: 650;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
 }
 
 #weatherWrapper {
   width: 100%;
 }
 
+#header {
+  background-color: rgb(51, 51, 51);
+  text-align: center;
+  padding: 10px 5px 10px 5px;
+}
+
+#alerts {
+  color: rgb(231, 63, 63);
+  text-align: center;
+  padding: 40px 5px 20px 5px;
+}
+
 #thePlace {
-  background-color: #485562;
+  background-color: rgb(252, 252, 252);
   padding: 5px 10px 5px 10px;
 }
 
 #theTime {
-  color: #ebab5b;
+  color: rgb(208, 143, 60);
   padding-left: 5px;
   font-weight: 400;
   font-size: 16.9px;
 }
 
 #container {
-  background: #4e5d6b;
-  margin: 10% 15% 10% 15%;
-  color: #ebebeb;
+  background: rgb(252, 252, 252);
+  margin: 1% 15% 5% 15%;
+  color: rgb(66, 66, 66);
   font-weight: 400;
+  text-align: center;
 }
 
 #theSummary {
@@ -165,7 +197,7 @@ a {
 }
 
 #summary {
-  font-weight: 700;
+  font-weight: 530;
   font-size: 15px;
 }
 
@@ -215,18 +247,17 @@ input:focus::-webkit-input-placeholder {
 }
 
 #temp {
-  font-weight: 700;
-  font-size: 35px;
   color: #e1662c;
   padding-right: 5px;
   padding-bottom: 7px;
+  font-weight: 700;
+  font-size: 15px;
 }
 
 #icon-canvas {
   font-size: 50px;
   padding: 5px 20px 5px 20px;
   width: 50px;
-  float: left;
 }
 
 #short-forecast {}
@@ -240,7 +271,6 @@ input:focus::-webkit-input-placeholder {
   text-align: center;
   margin: 0px;
   padding: 20px 5px 20px 5px;
-  position: fixed;
   bottom: 0;
   width: 100%;
 }
