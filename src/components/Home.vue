@@ -1,20 +1,34 @@
 <template>
 <div id="weatherWrapper">
 
-  <div id="header">
-
-    <h1>Weather App</h1>
-
-  </div>
-
   <div id="topBar">
+    <button id="geoLoc" type="button">Geo</button>
     <input v-model="location" id="searchBar" type="text" placeholder="Enter Location">
     <button @click="updateLocation" id="searchBtn" type="button">Search</button>
   </div>
 
+  <div id="statsBar">
+
+    <div id="sWind" class="stats">
+      <p><strong>Wind: </strong>{{ Math.round(forecast.currently.windSpeed) }} mph</p>
+    </div>
+    <div id="sHumidity" class="stats">
+      <p><strong>Humidity: </strong>{{ Math.round(forecast.currently.humidity) }}%</p>
+    </div>
+    <div id="sUvIndex" class="stats">
+      <p><strong>UV Index: </strong>{{ forecast.currently.uvIndex }}</p>
+    </div>
+    <div id="sVisibility" class="stats">
+      <p><strong>Visibility: </strong>{{ Math.round(forecast.currently.visibility) }} mi</p>
+    </div>
+    <div id="sPressure" class="stats">
+      <p><strong>Pressure: </strong>{{ Math.round(forecast.currently.pressure) }} hPa</p>
+    </div>
+  </div>
+
   <div id="alerts">
 
-    <a href="http://meteoalarm.eu/en_UK/0/0/UK013.html">{{ forecast.alerts[0].title }}</a>
+    <a href="http://meteoalarm.eu/en_UK/0/0/UK013.html">{{ forecast.alerts[0].title || ' ' }}</a>
 
   </div>
 
@@ -27,7 +41,7 @@
 
     <div id="theSummary">
 
-    <!--  <div id="icon-canvas">
+      <!--  <div id="icon-canvas">
         {{ icons[forecast.currently.icon] }}
       </div> -->
 
@@ -44,19 +58,8 @@
   </div>
 
   <div id="map" ref="map">
-    <iframe
-      id="map-embed-iframe"
-      frameborder="0"
-      height="450px"
-      width="100%"
-      :src='embedURL'>
+    <iframe id="map-embed-iframe" frameborder="0" height="450px" width="100%" :src='embedURL'>
     </iframe>
-  </div>
-
-  <div id="footer">
-
-    <p>Powered by DarkSky</p>
-
   </div>
 
 </div>
@@ -156,20 +159,24 @@ a:hover {
   text-decoration: underline;
 }
 
+.stats {
+  display: inline-block;
+  padding: 5px 10px 5px 10px;
+}
+
 #weatherWrapper {
   width: 100%;
 }
 
-#header {
-  background-color: rgb(51, 51, 51);
+#statsBar {
+  background-color: rgba(238, 238, 238, .35);
   text-align: center;
-  padding: 10px 5px 10px 5px;
 }
 
 #alerts {
   color: rgb(231, 63, 63);
   text-align: center;
-  padding: 40px 5px 20px 5px;
+  padding: 70px 5px 20px 5px;
 }
 
 #thePlace {
@@ -226,7 +233,23 @@ a:hover {
 #searchBar:focus {
   outline: none;
   background-color: rgb(255, 255, 255);
+  z-index: 1;
 
+}
+
+#geoLoc {
+  background-color: rgb(235, 235, 235);
+  width: 70px;
+  display: inline-block;
+  margin-right: -70px;
+  z-index: 9;
+  position: absolute;
+  padding: 5px 5px 5px 5px;
+  border-radius: 25px;
+  color: rgb(27, 27, 27);
+  text-align: center;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-size: 17px;
 }
 
 #searchBtn {
@@ -264,14 +287,5 @@ input:focus::-webkit-input-placeholder {
 
 #map {
   margin: 0px;
-}
-
-#footer {
-  background-color: rgb(51, 51, 51);
-  text-align: center;
-  margin: 0px;
-  padding: 20px 5px 20px 5px;
-  bottom: 0;
-  width: 100%;
 }
 </style>

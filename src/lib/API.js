@@ -10,7 +10,7 @@ function getCoordinates(location) {
 }
 
 function getForecast(lat, lng) {
-  return fetch(`${WEATHER_API_URL}${lat},${lng}`)
+  return fetch(`${WEATHER_API_URL}${lat},${lng}?units=si`)
     .then(response => response.json());
 }
 

@@ -21,14 +21,13 @@ export default {
 #app {
   background: rgb(252, 252, 252);
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  color: #ebebeb;
+  color: rgb(66, 66, 66);
   padding: 0px;
   margin: 0px;
 }
 
 body {
-  background: #2b3e4f;
-  color: #ebebeb;
+  color: rgb(66, 66, 66);
   padding: 0px;
   margin: 0px;
 }
